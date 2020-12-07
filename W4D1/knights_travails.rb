@@ -20,16 +20,14 @@
 require_relative "polytreenode.rb"
 
 class KnightPathFinder
-
-
     attr_reader :starting_pos, :root_node, :considered_positions
+    attr_writer :root_node
 
-    
     def initialize(pos)
         @pos = pos
         @root_node = PolyTreeNode.new(pos)
         @considered_positions = [pos]
-        # build_move_tree
+        build_move_tree
     end
 
     def build_move_tree
@@ -69,12 +67,30 @@ class KnightPathFinder
         @considered_positions.concat(possible_positions)
         possible_positions
     end
-
+    def find_path(end_pos)
+        end_node = self.root_node.bfs(end_pos)
+        trace_path_back(end_node).reverse
+    end
+    def trace_path_back(end_node)
+        new_arr = []
+        current_node = end_node
+        while current_node != nil
+            new_arr << current_node.value
+            current_node = current_node.parent
+        end
+        new_arr
+    end
 end
 
-knight = KnightPathFinder.new([0,0])
-# p knight.considered_positions.length
-p knight.build_move_tree
-# p knight.new_move_positions([1,2])
-# p KnightPathFinder.valid_moves([2,1])
-# p knight.new_move_positions([2,1])
+# knight = KnightPathFinder.new([0,0])
+# # p knight.considered_positions.length
+# p knight.build_move_tree
+# # p knight.new_move_positions([1,2])
+# # p KnightPathFinder.valid_moves([2,1])
+# # p knight.new_move_positions([2,1])
+kpf = KnightPathFinder.new([0, 0])
+# k = PolyTreeNode.new ([7,6])
+# p kpf.trace_path_back(k)
+p kpf.find_path([7, 6]) # => [[0, 0], [1, 2], [2, 4], [3, 6], [5, 5], [7, 6]]
+p kpf.find_path([6, 2]) # => [[0, 0], [1, 2], [2, 0], [4, 1], [6, 2]]
+

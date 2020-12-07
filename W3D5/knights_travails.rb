@@ -21,21 +21,60 @@ require_relative "polytreenode.rb"
 
 class KnightPathFinder
 
-    attr_reader :starting_pos
+
+    attr_reader :starting_pos, :root_node, :considered_positions
 
     
     def initialize(pos)
-        @starting_pos = pos
-        self.root_node = Polytreenode.new(@starting_pos)
-        build_move_tree
-        @board = Array.new(8) {Array.new(8)}
+        @pos = pos
+        @root_node = PolyTreeNode.new(pos)
+        @considered_positions = [pos]
+        # build_move_tree
     end
 
     def build_move_tree
-
+        queue = [@root_node]
+        until queue.empty? #while queue.length >0
+            current_node = queue.shift #take first ele of array
+            moves = new_move_positions(current_node.value)
+            moves.each do |move|
+                next_move = PolyTreeNode.new(move) 
+                current_node.add_child(next_move)
+                queue << next_move
+                p next_move.value
+            end
+        end
     end
 
+    def self.valid_moves(pos)
+        #possible knight moves: left one + 2 up, right one + 2 up, left 1 and 2 down, right 1 and 2 down
+        #1 up and 2 right, 1 up and 2 left, 1 down and 2 right, 1 down and 2 left
 
+        #Example: pos = [0,0]
+        x = pos[0]
+        y = pos[1]
+        moves = [[x+2,y+1], [x+2,y-1], [x-2,y+1], [x-2,y-1],
+                 [x+1,y+2], [x+1,y-2], [x-1,y+2], [x-1,y-2]]
+        #+x = go right, -x = go left, +y = go up, -y = go down
+        
+        #find if you can do the move from initial position. Can't go off the 8x8 board
+        moves.select do |move|
+            (move[0] >= 0 && move[0] <= 7) && (move[1] >= 0 && move[1] <= 7)
+        end
+    end
 
+    def new_move_positions(pos) #find NEW positions you can move to from a given position (no duplicates)
+        possible_positions = KnightPathFinder.valid_moves(pos)
+        possible_positions.reject! {|move| @considered_positions.include?(move)} #"!" to mutate instead of returning new array
+        @considered_positions.concat(possible_positions)
+        possible_positions
+    end
 
 end
+
+knight = KnightPathFinder.new([0,0])
+# p knight.considered_positions.length
+p knight.build_move_tree
+# p knight.new_move_positions([1,2])
+# p KnightPathFinder.valid_moves([2,1])
+# p knight.new_move_positions([2,1])

@@ -1,4 +1,5 @@
-require "Singleton"
+require "singleton"
+require_relative "piece.rb"
 
 class NullPiece < Piece
   attr_reader :color, :symbol
@@ -7,7 +8,7 @@ class NullPiece < Piece
 
   def initialize
     @color = "null"
-    @symbol = "null"
+    @symbol = "E"
     @moves = []
   end
 

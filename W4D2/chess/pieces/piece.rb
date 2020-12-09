@@ -17,6 +17,7 @@ class Piece
     
     def empty?
         # check if null piece
+        return true if self.is_a?(Nullpiece)
     end
 
     def valid_moves

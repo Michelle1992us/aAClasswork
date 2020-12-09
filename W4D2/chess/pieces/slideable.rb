@@ -12,18 +12,18 @@ module Slideable
     DIAGONAL_DIRECTIONS
   end
 
-  def moves(arrays)
-    moves_arr = []
+  # def moves(arrays)
+  #   moves_arr = []
 
-    arrays.each do |arr|
-      arr.each do |el|
-        self.pos = pos
-        moves_arr << [el[0] + pos[0], el[1] + pos[1]]
-      end
-    end
+  #   arrays.each do |arr|
+  #     arr.each do |el|
+  #       self.pos = pos
+  #       moves_arr << [el[0] + pos[0], el[1] + pos[1]]
+  #     end
+  #   end
 
-    moves_arr
-  end
+  #   moves_arr
+  # end
 
   def grow_unblocked_move_in_dir(dx, dy)
      
@@ -39,7 +39,7 @@ module Slideable
     grow_moves
   end
 
-  def get_all_moves
+  def moves
     all_moves = []
     if self.move_directions.include?(diagonal_directions)
       DIAGONAL_DIRECTIONS.each do |dir|
@@ -76,9 +76,9 @@ end
 
 bishop = Piece.new([5,5])
 # p bishop.moves(bishop.move_direction)
-p bishop.get_all_moves
+p bishop.moves
 # # p bishop.pos
-# p bishop.grow_unblocked_move_in_dir(1,1)
+p bishop.grow_unblocked_move_in_dir(1,1)
 
 
 

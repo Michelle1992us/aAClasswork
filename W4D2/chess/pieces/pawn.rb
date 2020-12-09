@@ -5,6 +5,8 @@ class Pawn < Piece
   end
 
   def moves
+    arr = []
+    [0, forward_steps]
   end
 
   def at_start_row?

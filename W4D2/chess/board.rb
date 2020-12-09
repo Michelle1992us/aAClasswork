@@ -15,6 +15,8 @@
 # there is no piece at start_pos or
 # the piece cannot move to end_pos.
 
+require_relative "./pieces/null_piece.rb"
+
 class Piece
 
     attr_reader :name
@@ -32,13 +34,13 @@ class Board
     attr_accessor :board
 
     def initialize()
-        @board = Array.new(8) {Array.new(8)}
+        @board = Array.new(8) {Array.new(8, NullPiece.instance)}
 
     end
 
     def fill_board
         (0...@board.length).each do |j|
-            (0...@board.length).each {|i| @board[j][i] = Piece.new}
+            (0...@board.length).each {|i| @board[j][i] = NullPiece.instance}
         end
     end
 
@@ -52,15 +54,15 @@ class Board
         @board[row][col] = piece
     end
 
-    def display_board
-        @board.each do |row|
-            p row.map {|p| p.name }
-        end
-    end
+    # def display_board
+    #     @board.each do |row|
+    #         p row.map {|p| p.name }
+    #     end
+    # end
 
     def empty?(pos)
         row, col = pos
-        @board[row][col].name == "E"  
+        @board[row][col].is_a?(NullPiece)  
     end
 
     def move_piece(start_pos, end_pos)
@@ -80,15 +82,15 @@ class Board
 
 end
 
-# piece1 = Piece.new
-# p piece1.name
-board1 = Board.new
-# p board1
-board1.fill_board
+# # piece1 = Piece.new
+# # p piece1.name
+# board1 = Board.new
+# # p board1
+# board1.fill_board
+# # board1.display_board
+# O = Piece.new("O")
+# board1[[0,0]] = O
+# # board1.display_board
+# p board1.empty?([0,1])
+# p board1.move_piece([0,0], [0,1])
 # board1.display_board
-O = Piece.new("O")
-board1[[0,0]] = O
-# board1.display_board
-p board1.empty?([0,1])
-p board1.move_piece([0,0], [0,1])
-board1.display_board

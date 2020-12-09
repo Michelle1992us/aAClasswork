@@ -64,4 +64,6 @@ p bishop.grow_unblocked_move_in_dir(1,1)
 
 
 
+# moves = [6,6],[4,4]
+# (5,5)
 

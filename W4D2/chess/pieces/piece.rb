@@ -11,8 +11,29 @@ class Piece
         @pos = pos
     end
 
-    def moves
+    def to_s
+        # not sure what this is right now
+    end
+    
+    def empty?
+        # check if null piece
+    end
 
+    def valid_moves
+        # get valid moves for piece
+    end
+
+    def pos=(val)
+        #set the position of the piece on the board
+    end
+
+    def symbol
+        # symbol to represent piece on board
+    end
+
+    def move_into_check?(end_pos)
+        # dup the board perfomr the move
+        # see if the player is in check after the move
     end
 
 end

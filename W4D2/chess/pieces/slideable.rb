@@ -12,10 +12,10 @@ module Slideable
     DIAGONAL_DIRECTIONS
   end
 
-  def moves(*dirs)
+  def moves(arrays)
     moves_arr = []
 
-    dirs.each do |arr|
+    arrays.each do |arr|
       arr.each do |el|
         self.pos = pos
         moves_arr << [el[0] + pos[0], el[1] + pos[1]]
@@ -26,7 +26,7 @@ module Slideable
   end
 
   def grow_unblocked_move_in_dir(dx, dy)
-    debugger 
+     
     grow_moves = []
     pos_x, pos_y = self.pos
     
@@ -39,6 +39,24 @@ module Slideable
     grow_moves
   end
 
+  def get_all_moves
+    all_moves = []
+    if self.move_directions.include?(diagonal_directions)
+      DIAGONAL_DIRECTIONS.each do |dir|
+        all_moves << grow_unblocked_move_in_dir(dir[0], dir[1])
+      end
+    end
+    if self.move_directions.include?(horizontal_directions)
+      HORIZONTAL_AND_VERICAL_DIRECTIONS.each do |dir|
+        all_moves << grow_unblocked_move_in_dir(dir[0], dir[1])
+      end
+    end
+    all_moves
+  end
+  #have array of possible moves (1 diagonal square in each poss dir)
+  #grow each of those moves w/in bounds of the board
+  #shovel into all_moves array
+
 end
 
 class Piece
@@ -50,16 +68,17 @@ class Piece
     @pos = pos
   end
 
-  def move_direction
-    diagonal_directions
+  def move_directions
+    [diagonal_directions,horizontal_directions]
   end
 
 end
 
 bishop = Piece.new([5,5])
 # p bishop.moves(bishop.move_direction)
-# p bishop.pos
-p bishop.grow_unblocked_move_in_dir(1,1)
+p bishop.get_all_moves
+# # p bishop.pos
+# p bishop.grow_unblocked_move_in_dir(1,1)
 
 
 

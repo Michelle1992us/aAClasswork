@@ -1,3 +1,4 @@
+require "byebug"
 # Phase I: Board
 # Your Board class should hold a 2-dimensional array (an array of arrays). Each position in the board either holds a moving Piece or a NullPiece (NullPiece will inherit from Piece).
 
@@ -16,28 +17,49 @@
 # the piece cannot move to end_pos.
 
 require_relative "./pieces/null_piece.rb"
+require_relative "pieces_req.rb"
 
-class Piece
+# class Piece
 
-    attr_reader :name
+#     attr_reader :name
 
-    def initialize(name = nil)
-        @name = "E" if @name == nil
-        @name = name if name != nil
-    end 
-
-end
+#     def initialize(name = nil)
+#         @name = "E" if @name == nil
+#         @name = name if name != nil
+#     end 
+    
+# end
 
 class Board
-
-
+    
+    
     attr_accessor :board
-
-    def initialize()
+    
+    def initialize
         @board = Array.new(8) {Array.new(8, NullPiece.instance)}
+        self.add_white_pawns
+        self.add_black_pawns
 
     end
 
+
+    def add_white_pawns
+        (0..7).each_with_index do |row|
+            new_pawn = Pawn.new(:white, self, [row, 1])
+            p new_pawn.class
+            p new_pawn.color
+            p new_pawn.symbol
+            p new_pawn.name
+            self[[row, 1]]= Pawn.new(:white, self, [row, 1])
+        end
+    end
+
+    def add_black_pawns
+        (0..7).each_with_index do |row|
+            self[[row, 6]] = Pawn.new(:black, @board, [row, 6])
+        end
+    end    
+    
     def fill_board
         (0...@board.length).each do |j|
             (0...@board.length).each {|i| @board[j][i] = NullPiece.instance}

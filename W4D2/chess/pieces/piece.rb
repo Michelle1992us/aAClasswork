@@ -9,6 +9,7 @@ class Piece
         @color = color
         @board = board
         @pos = pos
+        @symbol = (@color == :black ? "\u2659" : "\u265F")
     end
 
     def to_s

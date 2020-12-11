@@ -59,26 +59,26 @@ module Slideable
 
 end
 
-class Piece
-  include Slideable
+# class Piece
+#   include Slideable
 
-  attr_accessor :pos
+#   attr_accessor :pos
 
-  def initialize(pos)
-    @pos = pos
-  end
+#   def initialize(pos)
+#     @pos = pos
+#   end
 
-  def move_directions
-    [diagonal_directions,horizontal_directions]
-  end
+#   def move_directions
+#     [diagonal_directions,horizontal_directions]
+#   end
 
-end
+# end
 
-bishop = Piece.new([5,5])
-# p bishop.moves(bishop.move_direction)
-p bishop.moves
-# # p bishop.pos
-p bishop.grow_unblocked_move_in_dir(1,1)
+# bishop = Piece.new([5,5])
+# # p bishop.moves(bishop.move_direction)
+# p bishop.moves
+# # # p bishop.pos
+# p bishop.grow_unblocked_move_in_dir(1,1)
 
 
 

@@ -16,7 +16,8 @@ class Display
 
     def render
         @board.board.each do |row|
-            print row.map {|el| el.symbol}
+            print (row.map {|el| el.symbol})
+            print "\n"
         end
     end
 

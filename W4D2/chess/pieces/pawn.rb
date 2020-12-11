@@ -1,7 +1,16 @@
-class Pawn < Piece
+require_relative "piece"
 
-  def intialize
-    symbol = (color == :black ? "\u2659" : "\u265F")
+class Pawn < Piece
+  attr_reader :name, :symbol
+
+  def initialize(color,board,pos)
+    @color = color
+    @board = board
+    @pos = pos
+    @name = "chumbo"
+    @symbol = (@color == :black ? "\u2659" : "\u265F")
+    
+    super
   end
 
   def moves
@@ -31,3 +40,5 @@ class Pawn < Piece
 
   
 end
+
+new_pawn = Pawn.new(:white, "board", [0,0])

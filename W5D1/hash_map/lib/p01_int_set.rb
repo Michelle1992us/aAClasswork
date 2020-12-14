@@ -1,34 +1,32 @@
 class MaxIntSet
 
-#   An array called @store, of length max
-# Each index in the @store will correspond to an item, and the value at that index will correspond to its presence (either true or false)
-# e.g., the set { 0, 2, 3 } will be stored as: [true, false, true, true]
-# The size of the array will remain constant!
-# The MaxIntSet should raise an error if someone tries to insert, remove, or check inclusion of a number that is out of bounds.
-
+  attr_reader :store
   def initialize(max)
-    @store = Array.new(max, true)
+    @store = Array.new(max, false)
   end
 
   def insert(num)
-    @store.insert(num)
-    # xor
+    validate!(num)
+    return false if @store[num]
+    self.store[num] = true
   end
 
   def remove(num)
-    @store.delete(num)
+    self.store[num] = false
   end
 
   def include?(num)
-
+    self.store[num] == true
   end
 
   private
 
   def is_valid?(num)
+    num >= 0 && num <= @store.length - 1
   end
 
   def validate!(num)
+    raise "Out of bounds" if !is_valid?(num)
   end
 end
 

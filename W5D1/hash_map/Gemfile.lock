@@ -19,11 +19,10 @@ GEM
 
 PLATFORMS
   ruby
-  x86_64-linux
 
 DEPENDENCIES
   byebug
   rspec (~> 3.4.0)
 
 BUNDLED WITH
-   2.2.0
+   2.1.4

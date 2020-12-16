@@ -52,39 +52,42 @@ INSERT INTO
 VALUES
     ("Bob","Bobbington"), ("Cindy", "Carpenter"), ("Sam", "Smith");
 
-INSERT INTO 
-    questions (title, body, author_id)
-SELECT 
-    ("Does God exist?", "Looks like no", author_id)
-        FROM users 
-            WHERE users.fname = "Bob" and users.lname = "Bobbington";
+
 
 INSERT INTO 
     questions (title, body, author_id)
-SELECT 
-    ("Is Bob kind of a jerk", "Looks like yes", author_id)
-        FROM users 
-            WHERE users.fname = "Cindy" and users.lname = "Carpenter";
+VALUES 
+    ("Does God exist?", "Looks like no", (SELECT id FROM users WHERE users.fname = "Bob" and users.lname = "Bobbington"));
 
 INSERT INTO 
     questions (title, body, author_id)
-SELECT 
-    ("What is the meaning of life", "what is the answer", author_id)
-        FROM users 
-            WHERE users.fname = "Sam" and users.lname = "Smith";
+VALUES 
+    ("Is Bob kind of a jerk?", "Looks like yes", (SELECT id FROM users WHERE users.fname = "Cindy" and users.lname = "Carpenter"));
 
--- INSERT INTO 
---     question_follows (users_id, questions_id)
---     SELECT 
---         id 
---     FROM
---         users
---         WHERE fname = "Bob" and lname = "Bobbington"; 
+INSERT INTO 
+    questions (title, body, author_id)
+VALUES 
+    ("What is the meaning of life?", "what is the answer", (SELECT id FROM users WHERE users.fname = "Sam" and users.lname = "Smith"));
+
+INSERT INTO 
+    question_follows (users_id, questions_id)
+VALUES
+    ((SELECT id FROM users WHERE users.fname = "Bob" and users.lname = "Bobbington"),
+    (SELECT id FROM questions WHERE title = "Does God exist?")
+);
+
+INSERT INTO 
+    question_follows (users_id, questions_id)
+VALUES
+    ((SELECT id FROM users WHERE users.fname = "Cindy" and users.lname = "Carpingtor"),
+    (SELECT id FROM questions WHERE title = "Is Bob kind of a jerk?")
+    );
+
+INSERT INTO 
+    question_follows (users_id, questions_id)
+VALUES
+    ((SELECT id FROM users WHERE users.fname = "Sam" and users.lname = "Smith"),
+    (SELECT id FROM questions WHERE title = "What is the meaning of life?")
+    );
 
 
-
--- INSERT INTO
---   plays (title, year, playwright_id)
--- VALUES
---   ('All My Sons', 1947, (SELECT id FROM playwrights WHERE name = 'Arthur Miller')),
---   ('Long Day''s Journey Into Night', 1956, (SELECT id FROM playwrights WHERE name = 'Eugene O''Neill'));

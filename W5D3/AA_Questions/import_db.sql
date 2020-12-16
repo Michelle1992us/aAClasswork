@@ -79,7 +79,7 @@ VALUES
 INSERT INTO 
     question_follows (users_id, questions_id)
 VALUES
-    ((SELECT id FROM users WHERE users.fname = "Cindy" and users.lname = "Carpingtor"),
+    ((SELECT id FROM users WHERE users.fname = "Cindy" and users.lname = "Carpenter"),
     (SELECT id FROM questions WHERE title = "Is Bob kind of a jerk?")
     );
 
@@ -89,5 +89,32 @@ VALUES
     ((SELECT id FROM users WHERE users.fname = "Sam" and users.lname = "Smith"),
     (SELECT id FROM questions WHERE title = "What is the meaning of life?")
     );
+
+
+INSERT INTO 
+    replies (body, questions_id, author_id, parent_reply_id)
+
+VALUES 
+    ("Can confirm", (SELECT id FROM questions WHERE title = "Does God exist?"), 
+    (SELECT id FROM users WHERE users.fname = "Bob" and users.lname = "Bobbington"), 
+    (SELECT id FROM replies WHERE body = "Looks like no")
+    ); 
+
+INSERT INTO 
+    replies (body, questions_id, author_id, parent_reply_id)
+VALUES 
+    ("Lets burn him", (SELECT id FROM questions WHERE title = "Is Bob kind of a jerk?"), 
+    (SELECT id FROM users WHERE users.fname = "Cindy" and users.lname = "Carpenter"), 
+    (SELECT id FROM replies WHERE body = "Looks like yes")
+    );
+
+INSERT INTO 
+    replies (body, questions_id, author_id, parent_reply_id)
+VALUES 
+    ("47", (SELECT id FROM questions WHERE title = "What is the meaning of life?"), 
+    (SELECT id FROM users WHERE users.fname = "Sam" and users.lname = "Smith"), 
+    (SELECT id FROM replies WHERE body = "what is the answer")
+     );
+
 
 

@@ -13,16 +13,16 @@ CREATE TABLE questions (
     body TEXT NOT NULL,
     author_id INTEGER NOT NULL, 
 
-    FOREIGN KEY(author_id) REFERENCES users(id)
+    FOREIGN KEY (author_id) REFERENCES users(id)
 );
 
 CREATE TABLE question_follows (
     id INTEGER PRIMARY KEY, 
     users_id INTEGER NOT NULL, 
-    questions_id INTEGER NOT NULL, 
+    questions_id INTEGER NOT NULL,
 
-    FOREIGN KEY(questions_id) REFERENCES questions(id),
-    FOREIGN KEY(users_id) REFERENCES users(id),
+    FOREIGN KEY (questions_id) REFERENCES questions(id),
+    FOREIGN KEY (users_id) REFERENCES users(id)
  
 );
 
@@ -41,10 +41,10 @@ CREATE TABLE replies (
 CREATE TABLE question_likes (
     id INTEGER PRIMARY KEY,
     users_id INTEGER NOT NULL, 
-    questions_id INTEGER NOT NULL, 
+    questions_id INTEGER NOT NULL,
 
-    FOREIGN KEY(questions_id) REFERENCES questions(id),
-    FOREIGN KEY(users_id) REFERENCES users(id),
+    FOREIGN KEY (questions_id) REFERENCES questions(id),
+    FOREIGN KEY (users_id) REFERENCES users(id)
 );
 
 INSERT INTO
@@ -55,23 +55,32 @@ VALUES
 INSERT INTO 
     questions (title, body, author_id)
 SELECT 
-    ("Does God exist?", "Looks like no", users.id)
+    ("Does God exist?", "Looks like no", author_id)
         FROM users 
-            WHERE fname = "BOB" and lname = "Bobbington"
+            WHERE users.fname = "Bob" and users.lname = "Bobbington";
 
 INSERT INTO 
     questions (title, body, author_id)
 SELECT 
-    ("Is Bob kind of a jerk", "Looks like yes", users.id)
+    ("Is Bob kind of a jerk", "Looks like yes", author_id)
         FROM users 
-            WHERE fname = "BOB" and lname = "Bobbington"
+            WHERE users.fname = "Cindy" and users.lname = "Carpenter";
 
 INSERT INTO 
     questions (title, body, author_id)
 SELECT 
-    ("Does God exist?", "Looks like no", users.id)
+    ("What is the meaning of life", "what is the answer", author_id)
         FROM users 
-            WHERE fname = "BOB" and lname = "Bobbington"
+            WHERE users.fname = "Sam" and users.lname = "Smith";
+
+-- INSERT INTO 
+--     question_follows (users_id, questions_id)
+--     SELECT 
+--         id 
+--     FROM
+--         users
+--         WHERE fname = "Bob" and lname = "Bobbington"; 
+
 
 
 -- INSERT INTO

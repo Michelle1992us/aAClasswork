@@ -52,8 +52,6 @@ INSERT INTO
 VALUES
     ("Bob","Bobbington"), ("Cindy", "Carpenter"), ("Sam", "Smith");
 
-
-
 INSERT INTO 
     questions (title, body, author_id)
 VALUES 
@@ -116,5 +114,24 @@ VALUES
     (SELECT id FROM replies WHERE body = "what is the answer")
      );
 
+INSERT INTO
+    question_likes (users_id, questions_id)
+VALUES
+    ((SELECT id FROM users WHERE users.fname = "Bob" and users.lname = "Bobbington"),
+    (SELECT id FROM questions WHERE title = "Does God exist?")
+    );
 
+INSERT INTO
+    question_likes (users_id, questions_id)
+VALUES
+    ((SELECT id FROM users WHERE users.fname = "Cindy" and users.lname = "Carpenter"),
+    (SELECT id FROM questions WHERE title = "Is Bob kind of a jerk?")
+    );
+
+INSERT INTO
+    question_likes (users_id, questions_id)
+VALUES
+    ((SELECT id FROM users WHERE users.fname = "Sam" and users.lname = "Smith"),
+    (SELECT id FROM questions WHERE title = "What is the meaning of life?")
+    );
 

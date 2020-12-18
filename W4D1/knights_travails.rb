@@ -29,21 +29,7 @@ class KnightPathFinder
         @considered_positions = [pos]
         build_move_tree
     end
-
-    def build_move_tree
-        queue = [@root_node]
-        until queue.empty? #while queue.length >0
-            current_node = queue.shift #take first ele of array
-            moves = new_move_positions(current_node.value)
-            moves.each do |move|
-                next_move = PolyTreeNode.new(move) 
-                current_node.add_child(next_move)
-                queue << next_move
-                p next_move.value
-            end
-        end
-    end
-
+    
     def self.valid_moves(pos)
         #possible knight moves: left one + 2 up, right one + 2 up, left 1 and 2 down, right 1 and 2 down
         #1 up and 2 right, 1 up and 2 left, 1 down and 2 right, 1 down and 2 left
@@ -67,10 +53,26 @@ class KnightPathFinder
         @considered_positions.concat(possible_positions)
         possible_positions
     end
+
+    def build_move_tree
+        queue = [@root_node]
+        until queue.empty? #while queue.length >0
+            current_node = queue.shift #take first ele of array
+            moves = new_move_positions(current_node.value)
+            moves.each do |move|
+                next_move = PolyTreeNode.new(move) 
+                current_node.add_child(next_move)
+                queue << next_move
+                p next_move.value
+            end
+        end
+    end
+
     def find_path(end_pos)
         end_node = self.root_node.bfs(end_pos)
         trace_path_back(end_node).reverse
     end
+
     def trace_path_back(end_node)
         new_arr = []
         current_node = end_node

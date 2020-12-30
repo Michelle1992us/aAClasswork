@@ -1,0 +1,54 @@
+/* PHASE 1: Header */
+
+body {
+    font-family: 'Lato', sans-serif;
+    font-size: 40px;
+    font-weight: 400; /* boldness */
+    background: white
+}
+
+.header { 
+    background: red;
+    color: white;
+    border: 3px solid white;
+}
+
+.header a {
+    display: block;
+    padding: 10px 20px; 
+    /* padding-top, right, bottom, left. 
+    If any numbers are obmitted, bottom = top, left = right*/
+
+}
+
+.header-nav {
+    display: flex; /* flex to allow block 
+    elements to sit next to one another (logo/list) */
+    justify-content: space-between;
+    margin: 0 auto; /*auto to center*/
+    width: 1500px;
+    border-left: 1px solid white;
+    border-right: 1px solid white;
+
+
+}
+
+.header-logo {
+    font-weight: 700; 
+}
+
+.header-logo:hover {
+    background: gray;
+}
+
+.header-list {
+    display: flex; /*puts list next to one another */
+}
+
+.header-list > li {
+    border-left: 1px solid white; /* line to seperate each list */
+}
+
+.header-list > li:hover {
+    background: black;
+}

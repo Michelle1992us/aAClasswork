@@ -1,1 +1,12 @@
 <h1> Form to show a cat </h1>
+
+
+    <ul>
+       <li><a href=<%= cat_url(@cat.id) %>><%= @cat.name %></a></li>
+       <li><%= @cat.birth_date %></li>
+       <li><%= @cat.color %></li>
+       <li><%= @cat.sex %></li>
+       <li><%= @cat.description %></li>
+       
+    </ul>
+        

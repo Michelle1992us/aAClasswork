@@ -16,19 +16,38 @@ class CatsController < ApplicationController
     end
 
     def show
-        @cat = Cat.find_by(params[:id])
+        @cat = Cat.find(params[:id])
         render :show
     end
 
     def create
         @cat = Cat.new(cat_params)
-        if @cat
-            render :new
+        if @cat.save
+            redirect_to cat_url(@cat)
         else
-            render json: cat.error.full_messages, status: 422
+            render :new
+        end
+    end
+    
+    def edit
+        @cat = Cat.find(params[:id])
+        render :edit
+    end
+
+    def update
+        @cat = Cat.find(params[:id])
+        if @cat.update(cat_params)
+            redirect_to cat_url(@cat)
+        else
+            render :edit
         end
     end
 
+    def destroy
+        cat = Cat.find(params[:id])
+        cat.destroy
+        render json: cat
+    end
 
     private
 

@@ -1,12 +1,23 @@
 <h1> Form to show a cat </h1>
 
+<table>
+<thead style = "background-color: grey"> 
+  <tr>
+    
+    <th style = "border: 10px solid #333">Cat birth_date </th>
+    <th style = "border: 10px solid #333">Cat color</th>
+    <th style = "border: 10px solid #333">Cat name</th>
+    <th style = "border: 10px solid #333">Cat sex</th>
+    <th style = "border: 10px solid #333">Cat description</th>
+  </tr>
+  </thead>
+  <tr>
+    <td style = "border: 5px solid #333"> <%= @cat.birth_date %> </td>
+    <td style = "border: 5px solid #333"> <%= @cat.color %> </td>
+    <td style = "border: 5px solid #333"> <%= @cat.name %> </td>
+    <td style = "border: 5px solid #333"> <%= @cat.sex %> </td>
+    <td style = "border: 5px solid #333"> <%= @cat.description %> </td>
+</tr>
 
-    <ul>
-       <li><a href=<%= cat_url(@cat.id) %>><%= @cat.name %></a></li>
-       <li><%= @cat.birth_date %></li>
-       <li><%= @cat.color %></li>
-       <li><%= @cat.sex %></li>
-       <li><%= @cat.description %></li>
-       
-    </ul>
-        
+</table>
+

@@ -1,17 +1,25 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+  subject(:user) {FactoryBot.create(:user)}
+
+  
   it {should validate_presence_of(:username)}
   it {should validate_presence_of(:password_digest)}
   it {should validate_presence_of(:session_token)}
-  it {should validate_presence_of(:timestamps)}
-  it {should validate_length_of(:password).is_at_least(6)}
+  # it {should validate_length_of(:password).is_at_least(6)}
+
 
   it {should validate_uniqueness_of(:username)}
   it {should validate_uniqueness_of(:session_token)}
 
   it {should have_db_index(:session_token)}
   it {should have_db_index(:username)}
+
+  it { should have_db_column(:username) }
+  it { should have_db_column(:password_digest) }
+  it { should have_db_column(:session_token) }
+
 
 
   describe 'associations' do

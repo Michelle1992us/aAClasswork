@@ -10,6 +10,10 @@ RSpec.describe User, type: :model do
   it {should validate_uniqueness_of(:username)}
   it {should validate_uniqueness_of(:session_token)}
 
+  it {should have_db_index(:session_token)}
+  it {should have_db_index(:username)}
+
+
   describe 'associations' do
     it {should have_many(:goals)}
   end
@@ -26,6 +30,8 @@ RSpec.describe User, type: :model do
       FactoryBot.build(:user, password: '123456')
     end
   end
+
+  #Methods still needed: self.find_by_credentials, is_password?(password), password=(password), reset_session_token!, ensure_session_token
 
 
 

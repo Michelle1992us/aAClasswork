@@ -27,18 +27,18 @@ RSpec.describe User, type: :model do
     it {should have_many(:goals)}
   end
 
-  # describe '#password_encryption' do
-  #   it 'does not save password to the database' do
-  #     FactoryBot.create(:user, username: 'Diglet')
-  #     user = User.find_by(username: 'Diglet')
-  #     expect(user.password).not_to eq('password')
-  #   end
+  describe '#password_encryption' do
+    it 'does not save password to the database' do
+      User.create(username: 'Zac', password: 'password')
+      user = User.find_by(username: 'Zac')
+      expect(user.password).not_to eq('password')
+    end
 
-  #   it 'ensure password is encrypted using Bcrypt' do
-  #     expect(Bcrypt::Password).to receive(:create).with('123456')
-  #     FactoryBot.build(:user, password: '123456')
-  #   end
-  # end
+    it 'ensure password is encrypted using Bcrypt' do
+      expect(BCrypt::Password).to receive(:create).with('123456')
+      User.new(username: 'Zac', password: '123456')
+    end
+  end
 
 
 

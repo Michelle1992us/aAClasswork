@@ -8,6 +8,7 @@ Array.prototype.myEach = function(cb) {
 }
 
 function square(num) {
+//const square = function (num) {
     return num * num;
 }
 

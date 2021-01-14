@@ -6,6 +6,7 @@
 
 Array.prototype.uniq = function() {
     let arr = [];
+    debugger
     for (let i = 0; i < this.length; i++) {
         if (!arr.includes(this[i])) {
             arr.push(this[i]);
@@ -15,7 +16,7 @@ Array.prototype.uniq = function() {
 }
 
 
-// console.log([1,2,2,3,3,3,4].uniq()) //=> [1,2,3])
+console.log([1,2,2,3,3,3,4].uniq()) //=> [1,2,3])
 
 // Array#twoSum - returns an array of position pairs where the elements sum to zero
 
@@ -52,4 +53,4 @@ Array.prototype.transpose = function() {
     return arr;
 }
 
-console.log([[-2, -1, 1, 5, 6], [0, 5, 0, 1, 3], [2, 3, 5, 7, 9]].transpose()) //=> [[-2, 0, 2], [-1, 5, 3], [1, 0, 5]]
+// console.log([[-2, -1, 1, 5, 6], [0, 5, 0, 1, 3], [2, 3, 5, 7, 9]].transpose()) //=> [[-2, 0, 2], [-1, 5, 3], [1, 0, 5]]

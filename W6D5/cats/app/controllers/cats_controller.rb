@@ -32,7 +32,7 @@ class CatsController < ApplicationController
     def edit
         @cat = Cat.find(params[:id])
         render :edit
-    end
+    end\
 
     def update
         @cat = Cat.find(params[:id])

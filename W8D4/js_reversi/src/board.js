@@ -188,8 +188,6 @@ Board.prototype.isOver = function () {
 };
 
 
-
-
 /**
  * Prints a string representation of the Board to the console.
  */

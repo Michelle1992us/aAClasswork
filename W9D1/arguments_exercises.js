@@ -159,7 +159,7 @@ Function.prototype.curry = function(numArgs) {
         numbers.push(num);
         if (numbers.length === numArgs) {
             console.log("numbers in curry", numbers)
-            return that.call(that, ...numbers);
+            return that.apply(null, numbers);
             // return that(numbers)
             //func.apply(thisArg, [ argsArray])
             //if no ctx to pass, put "null"
@@ -170,18 +170,39 @@ Function.prototype.curry = function(numArgs) {
     return _curry;
 }
 
-function addStuff(array) {
-    console.log(array)
-    return array.reduce((acc, el) => acc + el)
+function addStuff(num1, num2, num3, num4) {
+    // console.log(array)
+    return num1 + num2 + num3 + num4
 }
 
-console.log(addStuff.curry(3)(1)(2)(3)) //first arg (3) = # of args, next 3 are the args beings passed in
+console.log(addStuff.curry(4)(1)(2)(3)(4)) //first arg (3) = # of args, next 3 are the args beings passed in
 // const sum = Function.prototype.curry(4);
-// console.log(sum(5)(30)(20)(1)); // => 56
-
-
+// // console.log(sum(5)(30)(20)(1)); // => 56
 
 
 
 
 //2. Write a version that uses ... (the spread operator).
+
+Function.prototype.curry = function(numArgs) {
+    const numbers = [];
+    const that = this;
+    function _curry(num) {
+        numbers.push(num);
+        if (numbers.length === numArgs) {
+            return that(...numbers);
+        } else {
+            return _curry;
+        }
+    }
+    return _curry;
+}
+
+function addStuff(num1, num2, num3, num4) {
+    // console.log(array)
+    return num1 + num2 + num3 + num4
+}
+
+console.log(addStuff.curry(4)(1)(2)(3)(4)) //first arg (3) = # of args, next 3 are the args beings passed in
+// // const sum = Function.prototype.curry(4);
+// // console.log(sum(5)(30)(20)(1)); // => 56

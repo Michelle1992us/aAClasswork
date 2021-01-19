@@ -119,20 +119,6 @@ Function.prototype.myBind = function (ctx, ...bindArgs) { //first arg is ctx, al
 //curriedSum
 //Write a curriedSum function that takes an integer (how many numbers to sum) and returns a function that can be successively called with single arguments until it finally returns a sum. 
 
-
-
-
-
-
-
-
-//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-
-
-// Function.prototype.curry
-// 1. Write a version that uses Function.prototype.apply 
-
 function curriedSum(numArgs){
     const numbers = [];
 
@@ -150,8 +136,52 @@ function curriedSum(numArgs){
 }
 
 
-const sum = curriedSum(4);
-console.log(sum(5)(30)(20)(1)); // => 56
+// const sum = curriedSum(4);
+// console.log(sum(5)(30)(20)(1)); // => 56
+
+
+
+
+
+
+//------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+
+
+// Function.prototype.curry
+// 1. Write a version that uses Function.prototype.apply 
+
+
+Function.prototype.curry = function(numArgs) {
+    const numbers = [];
+    const that = this;
+    function _curry(num) {
+        numbers.push(num);
+        if (numbers.length === numArgs) {
+            console.log("numbers in curry", numbers)
+            return that.call(that, ...numbers);
+            // return that(numbers)
+            //func.apply(thisArg, [ argsArray])
+            //if no ctx to pass, put "null"
+        } else {
+            return _curry;
+        }
+    }
+    return _curry;
+}
+
+function addStuff(array) {
+    console.log(array)
+    return array.reduce((acc, el) => acc + el)
+}
+
+console.log(addStuff.curry(3)(1)(2)(3)) //first arg (3) = # of args, next 3 are the args beings passed in
+// const sum = Function.prototype.curry(4);
+// console.log(sum(5)(30)(20)(1)); // => 56
+
+
+
+
 
 
 //2. Write a version that uses ... (the spread operator).

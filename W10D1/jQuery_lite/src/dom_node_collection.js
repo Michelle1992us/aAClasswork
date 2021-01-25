@@ -68,7 +68,27 @@ class DomNodeCollection {
     }
 
     find(selector) {
+        let elementList = [];
+        this.elements.forEach(node => {
+            node.querySelectorAll(selector).forEach(elementNode => elementList.push(elementNode));
+        })
+        return new DomNodeCollection(elementList)
+    }
 
+    remove() {
+        this.elements.forEach(node => node.remove())
+    }
+
+    on(eventType, cb){
+        this.elements.forEach(node => {
+            node.addEventListener(eventType, cb);
+        })
+    }
+
+    off(eventType, cb){
+        this.elements.forEach(node => {
+            node.removeEventListener(eventType, cb);
+        })
     }
 }
 

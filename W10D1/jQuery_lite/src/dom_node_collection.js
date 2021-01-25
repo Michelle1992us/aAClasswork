@@ -91,14 +91,7 @@ class DomNodeCollection {
         })
     }
 
-    extend(target, ...objects) {
-        objects.forEach(object => {
-            for(let key in object) {
-                target[key] = object[key];
-            }
-        })
-        return target;
-    }
+
 }
 
 module.exports = DomNodeCollection;

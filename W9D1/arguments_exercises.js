@@ -57,14 +57,14 @@ Function.prototype.myBind = function (ctx, ...bindArgs) { //first arg is ctx, al
 
 //1. Solve it first using the arguments keyword. Within your myBind method, you'll have to define a new, anonymous function to be returned. There are two arrays of arguments you care about: the extra arguments passed to myBind, and the arguments passed when the bound function is called. DO NOT USE ES6 (fat arrow)
 
-// Function.prototype.myBind = function (ctx) {
-//     let bindArgs = [].slice.call(arguments, 1) //use .slice to create an array. Slicing 1 = first argument
-//     let that = this //create variable for "this" b/c no longer using fat arrow, so "this" = "windows" if called in the function
-//     return function() { //get rid of fat arrow
-//         let callArgs = [].slice.call(arguments) //grab all of the arguments that came in
-//         return that.apply(ctx, bindArgs.concat(callArgs)); 
-//     }
-// }
+Function.prototype.myBind = function (ctx) {
+    let bindArgs = [].slice.call(arguments, 1) //use .slice to create an array. Slicing 1 = first argument
+    let that = this //create variable for "this" b/c no longer using fat arrow, so "this" = "windows" if called in the function
+    return function() { //get rid of fat arrow
+        let callArgs = [].slice.call(arguments) //grab all of the arguments that came in
+        return that.apply(ctx, bindArgs.concat(callArgs)); 
+    }
+}
 
 
 // class Cat {
@@ -105,10 +105,10 @@ Function.prototype.myBind = function (ctx, ...bindArgs) { //first arg is ctx, al
 
 // //2. write a second version using the ... rest operator.
 
-// // Function.prototype.myBind = function (ctx, ...bindArgs) {
-// //     return(...callArgs) => this.apply(ctx, bindArgs.concat(callArgs)); 
+Function.prototype.myBind = function (ctx, ...bindArgs) {
+    return(...callArgs) => this.apply(ctx, bindArgs.concat(callArgs)); 
 
-// // }
+}
 
 
 

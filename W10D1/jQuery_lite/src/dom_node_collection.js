@@ -47,6 +47,29 @@ class DomNodeCollection {
     removeClass(name) {
         this.elements.forEach(node => node.classList.remove(name));
     }
+
+    children() {
+        let arr = [];
+        this.elements.forEach(node => {
+            arr = arr.concat(Array.from(node.children))
+        })
+        arr.forEach(child => {
+            arr = arr.concat(Array.from(child.children))
+        })
+        return new DomNodeCollection(arr)
+    }
+
+    parent() {
+        let arr = [];
+        this.elements.forEach(node => {
+            arr.push(node.parentElement)
+        })
+        return new DomNodeCollection(arr)
+    }
+
+    find(selector) {
+
+    }
 }
 
 module.exports = DomNodeCollection;

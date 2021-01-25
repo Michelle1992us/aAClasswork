@@ -85,10 +85,19 @@ class DomNodeCollection {
         })
     }
 
-    off(eventType, cb){
+    off(eventType, cb) {
         this.elements.forEach(node => {
             node.removeEventListener(eventType, cb);
         })
+    }
+
+    extend(target, ...objects) {
+        objects.forEach(object => {
+            for(let key in object) {
+                target[key] = object[key];
+            }
+        })
+        return target;
     }
 }
 

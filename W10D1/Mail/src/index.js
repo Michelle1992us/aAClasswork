@@ -1,4 +1,6 @@
-document.addEventListener("DOMContentLoaded", function() {
+const Router = require ('./router.js')
+
+window.addEventListener("DOMContentLoaded", function() {
     let lis = Array.from(document.querySelectorAll(".sidebar-nav li"));
     lis.forEach(li => {
         li.addEventListener("click", () => {
@@ -6,4 +8,8 @@ document.addEventListener("DOMContentLoaded", function() {
             window.location.hash = location;
         })
     })
+
+    let content = document.querySelector('.content');
+    let router = new Router(content)
+    router.start();
 })

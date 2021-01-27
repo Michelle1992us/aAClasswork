@@ -1,5 +1,5 @@
 import React from 'react'
-import * as Minesweeper from "./minesweeper"
+
 
 class Board extends React.Component {
     constructor(props) {
@@ -7,9 +7,25 @@ class Board extends React.Component {
     }
 
     render() {
+        
         const board = this.props.board.grid;
-        board.map()
-    }
+        const rows = board.map((row, row_index) => {
+           return (<div className='row' key={row_index}>
+                {
+                    row.map((tile, tile_index) => {
+                    return  <Tile tile={tile} updateGame={this.updateGame} key={tile_index} />
+
+                    })
+                }
+            </div>
+            )
+        });
+        return(
+            <div className="board">
+                {rows}
+            </div>
+        )
+    };
 }
 
 

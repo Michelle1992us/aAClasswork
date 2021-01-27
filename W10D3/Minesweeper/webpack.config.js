@@ -2,7 +2,7 @@
 var path = require('path');
 
 module.exports = {
-  entry: './frontend/entry.jsx',
+  entry: './frontend/react_minesweeper.jsx',
   output: {
     filename: './bundle.js',
     path: path.resolve(__dirname)

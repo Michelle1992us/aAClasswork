@@ -20,16 +20,17 @@ class Tile extends React.Component{
         if (tile.explored) {
             if (tile.bombed) {
                 className = "bombed"
-                text = "💣"
-                text = "u+1f4a3"    
+               // text = "💣"
+              text =  '\u2622'
+               
             } else {
                 className = "explored"
                 text = tile.adjacentBombCount()
             }
         } else if (tile.flagged) {
             className = "flagged"
-            text = "&#128163"
-            text = "u+1f1f2"
+            text = "🇲🇰"
+
         } else {
             className = "unexplored"
             text = text

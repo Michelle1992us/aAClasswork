@@ -2,7 +2,6 @@ import React from 'react'
 import Tile from "./tile"
 
 
-
 class Board extends React.Component {
     constructor(props) {
         super(props)
@@ -15,7 +14,7 @@ class Board extends React.Component {
            return (<div className='row' key={row_index}>
                 {
                     row.map((tile, tile_index) => {
-                    return  <Tile tile={tile} updateGame={this.updateGame} key={tile_index} />
+                    return  <Tile tile={tile} updateGame={this.props.updateGame} key={tile_index} />
 
                     })
                 }

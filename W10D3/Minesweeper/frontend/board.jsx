@@ -1,4 +1,6 @@
 import React from 'react'
+import Tile from "./tile"
+
 
 
 class Board extends React.Component {
@@ -7,9 +9,9 @@ class Board extends React.Component {
     }
 
     render() {
-        
-        const board = this.props.board.grid;
-        const rows = board.map((row, row_index) => {
+        // debugger
+        const grid = this.props.board.grid;
+        const rows = grid.map((row, row_index) => {
            return (<div className='row' key={row_index}>
                 {
                     row.map((tile, tile_index) => {
@@ -20,7 +22,7 @@ class Board extends React.Component {
             </div>
             )
         });
-        return(
+        return( //always have a return in a render function
             <div className="board">
                 {rows}
             </div>

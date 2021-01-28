@@ -1,7 +1,6 @@
 import React from "react"
 import * as Minesweeper from "../minesweeper"
 import Board from "./board"
-import Modal from './modal'
 
 class Game extends React.Component{
     constructor(props){
@@ -9,6 +8,8 @@ class Game extends React.Component{
         const board = new Minesweeper.Board(9, 15) //grid size, num of bombs
         this.state = {board: board}
         this.updateGame = this.updateGame.bind(this)
+        this.restartGame = this.restartGame.bind(this)
+
     }
 
     updateGame(tile, flagged) {
@@ -20,12 +21,29 @@ class Game extends React.Component{
         this.setState({ board: this.state.board })
     }
 
+    restartGame() {
+        const board = new Minesweeper.Board(9, 15) 
+        this.state = {board: board}
+    }
+
     render() {
-        if (this.state.board.lost || this.state.board.won){
-            this.showModal()
-        }
+        let modal
+        if (this.state.board.lost() || this.state.board.won()) {
+            let message = this.state.board.won() ? "You won!" : "Try again, loser!"
+            modal = 
+                <div>
+                    {message}
+                    <button type="button" onClick={this.restartGame}>
+                        Let's play again!
+                    </button>
+                </div> 
+            } 
+        
         return (
-            <Board board={this.state.board} updateGame={this.updateGame}/>
+            <>
+                {modal}
+                <Board board={this.state.board} updateGame={this.updateGame}/>
+            </>
         )
     }
 }

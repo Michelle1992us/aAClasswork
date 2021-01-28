@@ -20,8 +20,8 @@ class Tile extends React.Component{
         if (tile.explored) {
             if (tile.bombed) {
                 className = "bombed"
-               // text = "💣"
-              text =  '\u2622'
+               text = "💣"
+            //   text =  '\u2622'
                
             } else {
                 className = "explored"

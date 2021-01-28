@@ -23,7 +23,7 @@ class Game extends React.Component{
 
     restartGame() {
         const board = new Minesweeper.Board(9, 15) 
-        this.state = {board: board}
+        this.setState({board: board})
     }
 
     render() {
@@ -31,11 +31,11 @@ class Game extends React.Component{
         if (this.state.board.lost() || this.state.board.won()) {
             let message = this.state.board.won() ? "You won!" : "Try again, loser!"
             modal = 
-                <div>
+                <div className="modal-screen">
                     {message}
-                    <button type="button" onClick={this.restartGame}>
+                <button type="button" onClick={this.restartGame}>
                         Let's play again!
-                    </button>
+                </button>
                 </div> 
             } 
         

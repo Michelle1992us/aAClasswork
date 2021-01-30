@@ -4,7 +4,6 @@ import configureStore from './frontend/store/store';
 import { receiveTodo, receiveTodos, removeTodo} from './frontend/actions/todo_actions'
 import { receiveStep, receiveSteps, removeStep} from './frontend/actions/step_actions'
 import Root from './frontend/components/root'
-import {allTodos} from './frontend/reducers/selectors'
 
 const todos = {
 	todos: { //key = id, values = objects
@@ -38,6 +37,5 @@ document.addEventListener("DOMContentLoaded", () => {
     window.receiveStep = receiveStep
     window.receiveSteps = receiveSteps
     window.removeStep = removeStep
-    window.allTodos = allTodos
 
 })

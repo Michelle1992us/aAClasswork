@@ -14,12 +14,11 @@ class PokemonIndex extends React.Component{
   // Refactor PokemonIndex to utilize pokemon_index_items. 
   //Your PokemonIndex should map each pokemon objects 
   //in this.props.pokemon to a PokemonIndexItem
-
-  const pokemonItems = pokemon.map(poke => (
-    <PokemonIndexItem key={poke.id} pokemon={poke} />
-  ));
   
   render(){
+    const pokemonItems = pokemon.map(poke => (
+      <PokemonIndexItem key={poke.id} pokemon={poke} />
+    ));
     return (
     // <section className="pokedex">
     //   <ul>
@@ -35,10 +34,9 @@ class PokemonIndex extends React.Component{
 
       <section className="pokedex">
         <ul>{pokemonItems}</ul>
-      </section>;
+      </section>
     )
   }
-
 }
   
   export default PokemonIndex;

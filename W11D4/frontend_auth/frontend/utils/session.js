@@ -1,7 +1,7 @@
 //creating a user. post-request to user's controller
 //takes in a user object + returns ajax request
 export const postUser = user => (
-    .ajax({
+    $.ajax({
         url: '/api/users',
         method: 'POST',
         data: {user}, //user object nested under keyword of 'user'

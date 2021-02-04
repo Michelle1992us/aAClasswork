@@ -17,6 +17,7 @@ const Auth = ({ loggedIn, path,  component: Component, }) => (
   />
 );
 
+//if user is logged in, can see. If they aren't, can't see.
 const Protected = ({ component: Component, path, loggedIn }) => (
   <Route
     path={path}

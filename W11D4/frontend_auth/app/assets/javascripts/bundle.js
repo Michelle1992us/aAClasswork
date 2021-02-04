@@ -309,10 +309,11 @@ exports.default = function () {
     null,
     _react2.default.createElement(_reactRouterDom.Route, { path: '/', component: _nav_bar_container2.default }),
     _react2.default.createElement(_reactRouterDom.Route, { exact: true, path: '/', component: _home2.default }),
-    _react2.default.createElement(_reactRouterDom.Route, { path: '/chirps', component: _chirp_index_container2.default }),
+    _react2.default.createElement(_route_utils.ProtectedRoute, { path: '/chirps', component: _chirp_index_container2.default }),
     _react2.default.createElement(_route_utils.AuthRoute, { path: '/signup', component: _signup_container2.default })
   );
 };
+//import route utils
 
 /***/ }),
 
@@ -1264,6 +1265,7 @@ var Auth = function Auth(_ref) {
   });
 };
 
+//if user is logged in, can see. If they aren't, can't see.
 var Protected = function Protected(_ref2) {
   var Component = _ref2.component,
       path = _ref2.path,

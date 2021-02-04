@@ -790,11 +790,58 @@ var _entities = __webpack_require__(/*! ./entities */ "./frontend/reducers/entit
 
 var _entities2 = _interopRequireDefault(_entities);
 
+var _session = __webpack_require__(/*! ./session */ "./frontend/reducers/session.js");
+
+var _session2 = _interopRequireDefault(_session);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _redux.combineReducers)({
-  entities: _entities2.default
+  entities: _entities2.default,
+  //add new session reducer
+  session: _session2.default
 });
+//import sessionReducer to rootReducer
+
+/***/ }),
+
+/***/ "./frontend/reducers/session.js":
+/*!**************************************!*\
+  !*** ./frontend/reducers/session.js ***!
+  \**************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _session = __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module '../actions/session'"); e.code = 'MODULE_NOT_FOUND'; throw e; }()));
+
+//create default state. What is returned if there's no user
+var _nullSession = {
+  currentUser: null //POJO. Key of currentUser, value of null
+}; //import constant from session actions
+
+exports.default = function () {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _nullSession;
+  var action = arguments[1];
+
+  //freeze to prevent accidently mutating the state
+  Object.freeze(state);
+  switch (action.type) {
+    case _session.RECEIVE_CURRENT_USER:
+      //return as new slice of state the currentUser nested under the name "currentUser"
+      return Object.assign({}, { currentUser: action.user });
+    case _session.LOGOUT_CURRENT_USER:
+      return _nullSession;
+    default:
+      return state;
+  }
+};
 
 /***/ }),
 

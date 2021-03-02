@@ -94,7 +94,7 @@ function maxNonAdjacentSum(nums, start = 0, end = nums.length - 1, memo = {}) {
 
     let ways = [];
     for (let i = start; i <= end; i++) {
-        let amt = nums[i];
+        let amt = nums[i];A
         ways.push(amt + maxNonAdjacentSum(nums, start, i - 2, memo) + maxNonAdjacentSum(nums, i + 2, end, memo));
     }
 
